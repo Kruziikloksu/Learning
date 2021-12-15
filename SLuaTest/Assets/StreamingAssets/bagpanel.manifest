@@ -1,0 +1,69 @@
+ManifestFileVersion: 0
+CRC: 3117980729
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 155216b1ff68b01955a908270dc29aa2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 287e3ac62e72d86c3be84fb1cef3208c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 74c82212c10685f47b70bed4a6d41aaa, type: 3}
+- Class: 114
+  Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -2061169968, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1367256648, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 62bf92d2f8af6384faced853679f5832, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ddfc3bcd4c6c7364aa90b13d490d2bb6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 86fdc47fd46fcf44897d347a3066dcd2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/ItemData/5.asset
+- Assets/Prefabs/ItemSlot.prefab
+- Assets/Resources/ItemData/3.asset
+- Assets/Resources/ItemData/4.asset
+- Assets/Resources/ItemData/2.asset
+- Assets/Resources/ItemData/1.asset
+- Assets/Resources/ItemData/7.asset
+- Assets/Resources/ItemData/6.asset
+- Assets/Prefabs/BagPanel.prefab
+- Assets/Resources/Bag/Bag.asset
+Dependencies: []

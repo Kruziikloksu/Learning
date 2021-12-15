@@ -1,0 +1,14 @@
+import "UnityEngine"
+
+function CreateCube()
+    print("Lua创建了一个Cube")
+    local cube = GameObject.CreatePrimitive(PrimitiveType.Cube)
+end
+
+function MyLuaFunction()
+    print("这是MyLuaFunction")
+end
+
+function main()
+	print("Lua主函数执行了")
+end
