@@ -18,7 +18,7 @@ public class HelloLua : MonoBehaviour
     public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua文件
     {
         //这里为了测试就不先判断为空,开发的时候再加上
-        string filename = Application.dataPath + "/Scripts/Lua/" + strFile.Replace('.', '/') + ".txt";
+        string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
     }
     public void MyLuaFunction()
