@@ -32,7 +32,7 @@ public class BagPanel : MonoBehaviour
 
     public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua
     {
-        string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
+        string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
     }
 
@@ -67,7 +67,7 @@ public class BagPanel : MonoBehaviour
             refreshItems = luaMainState.getFunction("RefreshItems");
             dropTheseItem = luaMainState.getFunction("DropTheseItem");
         });
-        thisItem = myBag.itemInBag[3];
+        //thisItem = myBag.itemInBag[3];
         RefreshItems();
         //CreateNewItem(thisItem);
 
@@ -78,6 +78,7 @@ public class BagPanel : MonoBehaviour
         //updateItemInfo.call(itemInfo);
         instance.itemInfo.text = itemInfo.ToString();
     }
+    /*
     //public void AddNewItem()
     //{
     //    if (!myBag.itemInBag.Contains(thisItem))
@@ -87,40 +88,45 @@ public class BagPanel : MonoBehaviour
     //    }
     //    RefreshItems();
     //}
+    */
     public void CreateNewItem(ItemSO itemDataSO)
     {
-        /*
-        if (itemDataSO.itemHeldNum > 0)
-        {
-            ItemSlot newItem = Instantiate(instance.itemSlot, instance.slotGrid.transform.position, Quaternion.identity);
-            newItem.gameObject.transform.SetParent(instance.slotGrid.transform);
-            newItem.thisItem = itemDataSO;
-            newItem.itemName.text = itemDataSO.itemName.ToString();
-            newItem.itemHeldNum.text = itemDataSO.itemHeldNum.ToString();
-            newItem.itemInfo = itemDataSO.itemDescription;
-        }
-        */
+
         createNewItem.call(itemDataSO);
     }
+    /*
+if (itemDataSO.itemHeldNum > 0)
+{
+    ItemSlot newItem = Instantiate(instance.itemSlot, instance.slotGrid.transform.position, Quaternion.identity);
+    newItem.gameObject.transform.SetParent(instance.slotGrid.transform);
+    newItem.thisItem = itemDataSO;
+    newItem.itemName.text = itemDataSO.itemName.ToString();
+    newItem.itemHeldNum.text = itemDataSO.itemHeldNum.ToString();
+    newItem.itemInfo = itemDataSO.itemDescription;
+}
+*/
     public void RefreshItems()  //刷新Action
     {
-        //for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
-        //{
-        //    if (instance.slotGrid.transform.childCount == 0)
-        //    {
-        //        break;
-        //    }
-        //    Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
-        //}
-        //for (int i = 0; i < instance.myBag.itemInBag.Count; i++)
-        ////foreach(ItemSO itemSO in myBag.itemInBag)
-        //{
-        //    thisItem = myBag.itemInBag[i]; ;
-        //    //CreateNewItem(myBag.itemInBag[i]);
-        //    CreateNewItem(thisItem);
-        //}
+
         refreshItems.call();
     }
+    /*
+    //for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
+    //{
+    //    if (instance.slotGrid.transform.childCount == 0)
+    //    {
+    //        break;
+    //    }
+    //    Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+    //}
+    //for (int i = 0; i < instance.myBag.itemInBag.Count; i++)
+    ////foreach(ItemSO itemSO in myBag.itemInBag)
+    //{
+    //    thisItem = myBag.itemInBag[i]; ;
+    //    //CreateNewItem(myBag.itemInBag[i]);
+    //    CreateNewItem(thisItem);
+    //}
+    */
     public void DropTheseItem()
     {
         //myBag.itemInBag.Remove(thisItem);

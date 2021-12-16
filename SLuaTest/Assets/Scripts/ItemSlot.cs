@@ -21,7 +21,7 @@ public class ItemSlot : MonoBehaviour {
 
     public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua
     {
-        string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
+        string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
     }
 
@@ -34,16 +34,12 @@ public class ItemSlot : MonoBehaviour {
     {
         BagPanel.instance.thisItem = thisItem;
         BagPanel.UpdateItemInfo(thisItem.itemDescription);
-        //BagPanel.instance.itemInfo.text = thisItem.itemDescription;
     }
     private void Awake()
     {
-        //itemBag = AssetBundleManager.LoadResource<BagSO>("Bag", "bagpanel");
     }
     private void OnEnable()
     {
-        //BagPanel.RefreshItems();
-        //instance.itemInfo.text = "";//文本重置
 
     }
 }

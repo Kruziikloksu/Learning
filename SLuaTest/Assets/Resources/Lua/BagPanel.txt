@@ -1,0 +1,64 @@
+import "UnityEngine"
+
+if not UnityEngine.GameObject or not  UnityEngine.UI then
+  error("Click Make/All to generate lua wrap file")
+end
+local thisItem
+--local itemInfo
+--local slotGrid
+function main()
+  bagPanel = GameObject.Find("BagPanel(Clone)") --背包面板自身
+  bagPanelCS = bagPanel:GetComponent(BagPanel) --背包面板的cs脚本
+  --itemInfo = GameObject.Find("BagPanel(Clone)/Background/DescriptionText"):GetComponent(UI.Text)--描述框
+  itemInfo= bagPanelCS.itemInfo
+  slotGrid = GameObject.Find("BagPanel(Clone)/Background/Scroll View/Viewport/ItemGrid") --格子
+  bagSO=bagPanelCS.myBag --背包资源
+  itemSlot = bagPanelCS.itemSlot --itemSlot的prefab
+  thisItem = bagPanelCS.thisItem --当前装备
+  --local luaTest = GameObject.Find("LuaTest")
+  itemInfo.text=""
+end
+main()
+
+function CreateNewItem(itemData)
+  local itemDataSO=itemData
+  if itemDataSO.itemHeldNum>0 then
+    main()
+    local newSlot =GameObject.Instantiate(itemSlot,slotGrid.transform)
+    --newSlot.gameObject.transform:SetParent(slotGrid.transform)
+    local newSlotCS=newSlot:GetComponent(ItemSlot)
+    newSlotCS.thisItem=itemData
+    newSlotCS.itemName:GetComponent(UI.Text).text=string.format(itemDataSO.itemName)
+    newSlotCS.itemHeldNum:GetComponent(UI.Text).text=string.format(itemDataSO.itemHeldNum)
+    newSlotCS.itemInfo=string.format(itemDataSO.itemDescription)
+  end
+end
+
+function RefreshItems()
+  main()
+  
+  for j=0,slotGrid.transform.childCount-1,1
+  do
+    if slotGrid.transform.childCount==0 then
+      break
+    end
+  GameObject.Destroy(slotGrid.transform:GetChild(j).gameObject)
+  end
+  
+  for i=0,bagSO.itemInBag.Count-1,1
+  do
+    CreateNewItem(bagSO.itemInBag[i])
+  end
+end
+
+function DropTheseItem()
+  main()
+  bagSO.itemInBag:Remove(thisItem)
+  print("Remove itemID"..thisItem.itemId)
+  RefreshItems()
+end
+
+function CloseBagPanel()
+  local bagPanel=GameObject.Find("BagPanel(Clone)")
+  GameObject.Destroy(bagPanel)
+end
