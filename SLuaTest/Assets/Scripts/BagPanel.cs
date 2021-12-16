@@ -23,6 +23,8 @@ public class BagPanel : MonoBehaviour
     LuaFunction updateItemInfo;
     LuaFunction closeBagPanel;
     public LuaFunction createNewItem;
+    public LuaFunction refreshItems;
+    public LuaFunction dropTheseItem;
 
     public LuaSvr luaSvr;
     LuaState luaState;
@@ -62,6 +64,8 @@ public class BagPanel : MonoBehaviour
             self = (LuaTable)luaSvr.start(luaFileName);
             closeBagPanel = luaMainState.getFunction("CloseBagPanel");
             createNewItem = luaMainState.getFunction("CreateNewItem");
+            refreshItems = luaMainState.getFunction("RefreshItems");
+            dropTheseItem = luaMainState.getFunction("DropTheseItem");
         });
         thisItem = myBag.itemInBag[3];
         RefreshItems();
@@ -100,26 +104,28 @@ public class BagPanel : MonoBehaviour
     }
     public void RefreshItems()  //刷新Action
     {
-        for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
-        {
-            if (instance.slotGrid.transform.childCount == 0)
-            {
-                break;
-            }
-            Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
-        }
-        for (int i = 0; i < instance.myBag.itemInBag.Count; i++)
-        //foreach(ItemSO itemSO in myBag.itemInBag)
-        {
-            thisItem = myBag.itemInBag[i]; ;
-            //CreateNewItem(myBag.itemInBag[i]);
-            CreateNewItem(thisItem);
-        }
+        //for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
+        //{
+        //    if (instance.slotGrid.transform.childCount == 0)
+        //    {
+        //        break;
+        //    }
+        //    Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+        //}
+        //for (int i = 0; i < instance.myBag.itemInBag.Count; i++)
+        ////foreach(ItemSO itemSO in myBag.itemInBag)
+        //{
+        //    thisItem = myBag.itemInBag[i]; ;
+        //    //CreateNewItem(myBag.itemInBag[i]);
+        //    CreateNewItem(thisItem);
+        //}
+        refreshItems.call();
     }
     public void DropTheseItem()
     {
         //myBag.itemInBag.Remove(thisItem);
-        RefreshItems();
+        //RefreshItems();
+        dropTheseItem.call();
     }
     public void CloseBagPanel()
     {
