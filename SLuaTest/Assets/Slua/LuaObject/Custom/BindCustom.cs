@@ -6,6 +6,10 @@ namespace SLua {
 		public static Action<IntPtr>[] GetBindList() {
 			Action<IntPtr>[] list= {
 				Lua_BagPanel.reg,
+				Lua_ItemSlot.reg,
+				Lua_LuaShowBag.reg,
+				Lua_ItemSO.reg,
+				Lua_TestSOToLua.reg,
 				Lua_Custom.reg,
 				Lua_Custom_IFoo.reg,
 				Lua_Deleg.reg,

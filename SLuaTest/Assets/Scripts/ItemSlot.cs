@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using SLua;
 
+[CustomLuaClass]
 public class ItemSlot : MonoBehaviour {
 
     BagSO itemBag;
@@ -26,7 +28,7 @@ public class ItemSlot : MonoBehaviour {
     public void DeleteThisItem()
     {
         thisItem.itemHeldNum --;
-        BagPanel.RefreshItems();
+        BagPanel.instance.RefreshItems();
     }
     public void ItemOnClicked()
     {

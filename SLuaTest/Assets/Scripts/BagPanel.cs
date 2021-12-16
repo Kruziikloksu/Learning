@@ -22,6 +22,7 @@ public class BagPanel : MonoBehaviour
 
     LuaFunction updateItemInfo;
     LuaFunction closeBagPanel;
+    public LuaFunction createNewItem;
 
     public LuaSvr luaSvr;
     LuaState luaState;
@@ -49,7 +50,7 @@ public class BagPanel : MonoBehaviour
     private void OnEnable()
     {
         myBag = AssetBundleManager.LoadResource<BagSO>("Bag", "bagpanel");
-        BagPanel.RefreshItems();
+
         //instance.itemInfo.text = "";//文本重置
         
         luaSvr = new LuaSvr();// 初始化LuaSvr LuaSvr是对LuaState的一个封装
@@ -60,26 +61,31 @@ public class BagPanel : MonoBehaviour
             luaMainState.loaderDelegate += LuaReourcesFileLoader;//在mainState的委托loaderDelegate里注册方法
             self = (LuaTable)luaSvr.start(luaFileName);
             closeBagPanel = luaMainState.getFunction("CloseBagPanel");
+            createNewItem = luaMainState.getFunction("CreateNewItem");
         });
-        
+        thisItem = myBag.itemInBag[3];
+        RefreshItems();
+        //CreateNewItem(thisItem);
 
     }
+
     public static void UpdateItemInfo(string itemInfo)
     {
         //updateItemInfo.call(itemInfo);
         instance.itemInfo.text = itemInfo.ToString();
     }
-    public void AddNewItem()
+    //public void AddNewItem()
+    //{
+    //    if (!myBag.itemInBag.Contains(thisItem))
+    //    {
+    //        myBag.itemInBag.Add(thisItem);
+    //        CreateNewItem(thisItem);
+    //    }
+    //    RefreshItems();
+    //}
+    public void CreateNewItem(ItemSO itemDataSO)
     {
-        if (!myBag.itemInBag.Contains(thisItem))
-        {
-            myBag.itemInBag.Add(thisItem);
-            BagPanel.CreateNewItem(thisItem);
-        }
-        BagPanel.RefreshItems();
-    }
-    public static void CreateNewItem(ItemSO itemDataSO)
-    {
+        /*
         if (itemDataSO.itemHeldNum > 0)
         {
             ItemSlot newItem = Instantiate(instance.itemSlot, instance.slotGrid.transform.position, Quaternion.identity);
@@ -89,8 +95,10 @@ public class BagPanel : MonoBehaviour
             newItem.itemHeldNum.text = itemDataSO.itemHeldNum.ToString();
             newItem.itemInfo = itemDataSO.itemDescription;
         }
+        */
+        createNewItem.call(itemDataSO);
     }
-    public static void RefreshItems()  //刷新Action
+    public void RefreshItems()  //刷新Action
     {
         for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
         {
@@ -101,13 +109,16 @@ public class BagPanel : MonoBehaviour
             Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
         }
         for (int i = 0; i < instance.myBag.itemInBag.Count; i++)
+        //foreach(ItemSO itemSO in myBag.itemInBag)
         {
-            CreateNewItem(instance.myBag.itemInBag[i]);
+            thisItem = myBag.itemInBag[i]; ;
+            //CreateNewItem(myBag.itemInBag[i]);
+            CreateNewItem(thisItem);
         }
     }
     public void DropTheseItem()
     {
-        myBag.itemInBag.Remove(thisItem);
+        //myBag.itemInBag.Remove(thisItem);
         RefreshItems();
     }
     public void CloseBagPanel()
