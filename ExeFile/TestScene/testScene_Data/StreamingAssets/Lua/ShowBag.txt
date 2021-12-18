@@ -1,0 +1,30 @@
+
+import "UnityEngine"
+
+if not UnityEngine.GameObject or not  UnityEngine.UI then
+  error("Click Make/All to generate lua wrap file")
+end
+
+local showBagButton
+local bagPanel
+local isOpen=0
+
+function main()
+  --local luaTest = GameObject.Find("LuaTest")
+end
+main()
+
+function ShowBag(bagPanel)
+  local bagPanelIns=GameObject.Find("BagPanel(Clone)")
+  if bagPanelIns==nil then
+    GameObject.Instantiate(bagPanel)
+    isOpen=1
+  else
+    --bagPanelIns=GameObject.Find("BagPanel(Clone)")
+    GameObject.Destroy(bagPanelIns.gameObject)
+	isOpen=0
+  end
+end
+
+
+    

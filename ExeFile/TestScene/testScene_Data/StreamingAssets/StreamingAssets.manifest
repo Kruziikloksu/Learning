@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 2011733093
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: bagpanel
+      Dependencies: {}
+    Info_1:
+      Name: mylua
+      Dependencies: {}
