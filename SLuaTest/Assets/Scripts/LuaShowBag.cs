@@ -17,9 +17,10 @@ public class LuaShowBag : MonoBehaviour {
     LuaState luaState;
     LuaTable self;
 
-    public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua
+    public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua ref把地址也传进去了 读取全部字节
     {
-        string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
+        //string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
+        string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
     }
 

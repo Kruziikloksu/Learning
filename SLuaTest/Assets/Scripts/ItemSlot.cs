@@ -21,7 +21,8 @@ public class ItemSlot : MonoBehaviour {
 
     public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua
     {
-        string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
+        //string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
+        string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
     }
 

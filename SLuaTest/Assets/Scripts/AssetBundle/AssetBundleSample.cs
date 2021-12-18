@@ -12,13 +12,16 @@ public class AssetBundleSample : MonoBehaviour
     public string imageName2= "Image02";
     public string assetBundleName= "uiresources";
 
+
     private void Start()
     {
         Debug.Log(AssetBundleManager.GetStreamingAssetsPath());
+
     }
     public void OnClickLoad()
     {
         imageToChange.texture = AssetBundleManager.LoadResource<Texture>(imageName1, assetBundleName);
+
     }
 
     public void OnClickLoad2()
