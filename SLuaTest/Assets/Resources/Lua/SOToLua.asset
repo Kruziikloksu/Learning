@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c17422be423194eb745bf72b2ce225, type: 3}
+  m_Name: SOToLua
+  m_EditorClassIdentifier: 
+  LuaString: "\r\nimport \"UnityEngine\"\r\n\r\nif not UnityEngine.GameObject or not
+    \ UnityEngine.UI then\r\n  error(\"Click Make/All to generate lua wrap file\")\r\nend\r\n\r\nfunction
+    main()\r\n\nlocal TestText = GameObject.Find(\"Canvas/TestText\")\r\n\nlocal thisCS=TestText:GetComponent(TestSOToLua)\r\n\n--local
+    thisSOId = thisCS:GetSOId();\r\nlocal thisSOId2 = thisCS.thisItem.itemId;\r\n\n--print(thisSOId)\r\nlocal
+    TestTextText=TestText:GetComponent(UI.Text)\r\n\n--TestTextText.text=string.format(\"thisID:%d\",thisSOId)\r\nTestTextText.text=string.format(\"thisID:%d\",thisSOId2)\r\n\r\nend"

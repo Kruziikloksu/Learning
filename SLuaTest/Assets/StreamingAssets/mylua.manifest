@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1883676478
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 81e6b84b1a56072870f60bc19b739a24
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Lua/BagPanel.txt
+- Assets/Resources/Lua/Lua.txt
+- Assets/Resources/Lua/SOToLua.txt
+- Assets/Resources/Lua/ShowBag.txt
+Dependencies: []

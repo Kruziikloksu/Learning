@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c17422be423194eb745bf72b2ce225, type: 3}
+  m_Name: BagPanel
+  m_EditorClassIdentifier: 
+  LuaString: "import \"UnityEngine\"\r\n\r\nif not UnityEngine.GameObject or not  UnityEngine.UI
+    then\r\n  error(\"Click Make/All to generate lua wrap file\")\r\nend\r\nlocal
+    thisItem\r\n--local itemInfo\r\n--local slotGrid\r\nfunction main()\r\n  bagPanel
+    = GameObject.Find(\"BagPanel(Clone)\") --\u80CC\u5305\u9762\u677F\u81EA\u8EAB\r\n
+    \ bagPanelCS = bagPanel:GetComponent(BagPanel) --\u80CC\u5305\u9762\u677F\u7684cs\u811A\u672C\r\n
+    \ --itemInfo = GameObject.Find(\"BagPanel(Clone)/Background/DescriptionText\"):GetComponent(UI.Text)--\u63CF\u8FF0\u6846\r\n
+    \ itemInfo= bagPanelCS.itemInfo\r\n  slotGrid = GameObject.Find(\"BagPanel(Clone)/Background/Scroll
+    View/Viewport/ItemGrid\") --\u683C\u5B50\r\n  bagSO=bagPanelCS.myBag --\u80CC\u5305\u8D44\u6E90\r\n
+    \ itemSlot = bagPanelCS.itemSlot --itemSlot\u7684prefab\r\n  thisItem = bagPanelCS.thisItem
+    --\u5F53\u524D\u88C5\u5907\r\n  --local luaTest = GameObject.Find(\"LuaTest\")\r\n
+    \ itemInfo.text=\"\"\r\nend\r\nmain()\r\n\r\nfunction CreateNewItem(itemData)\r\n
+    \ local itemDataSO=itemData\r\n  if itemDataSO.itemHeldNum>0 then\r\n    main()\r\n
+    \   local newSlot =GameObject.Instantiate(itemSlot,slotGrid.transform)\r\n    --newSlot.gameObject.transform:SetParent(slotGrid.transform)\r\n
+    \   local newSlotCS=newSlot:GetComponent(ItemSlot)\r\n    newSlotCS.thisItem=itemData\r\n
+    \   newSlotCS.itemName:GetComponent(UI.Text).text=string.format(itemDataSO.itemName)\r\n
+    \   newSlotCS.itemHeldNum:GetComponent(UI.Text).text=string.format(itemDataSO.itemHeldNum)\r\n
+    \   newSlotCS.itemInfo=string.format(itemDataSO.itemDescription)\r\n  end\r\nend\r\n\r\nfunction
+    RefreshItems()\r\n  main()\r\n  \r\n  for j=0,slotGrid.transform.childCount-1,1\r\n
+    \ do\r\n    if slotGrid.transform.childCount==0 then\r\n      break\r\n    end\r\n
+    \ GameObject.Destroy(slotGrid.transform:GetChild(j).gameObject)\r\n  end\r\n  \r\n
+    \ for i=0,bagSO.itemInBag.Count-1,1\r\n  do\r\n    CreateNewItem(bagSO.itemInBag[i])\r\n
+    \ end\r\nend\r\n\r\nfunction DropTheseItem()\r\n  main()\r\n  bagSO.itemInBag:Remove(thisItem)\r\n
+    \ print(\"Remove itemID\"..thisItem.itemId)\r\n  RefreshItems()\r\nend\r\n\r\nfunction
+    CloseBagPanel()\r\n  local bagPanel=GameObject.Find(\"BagPanel(Clone)\")\r\n  GameObject.Destroy(bagPanel)\r\nend\r\n"

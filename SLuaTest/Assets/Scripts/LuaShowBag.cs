@@ -8,6 +8,9 @@ using SLua;
 [CustomLuaClass]
 public class LuaShowBag : MonoBehaviour {
 
+    //public LuaResourse thisLuaRes;
+    
+
     public GameObject bagPanel;
     //public Button showBagButton;
     public string luaFileName="ShowBag";
@@ -18,10 +21,13 @@ public class LuaShowBag : MonoBehaviour {
     LuaTable self;
 
     public static byte[] LuaReourcesFileLoader(string strFile, ref string fn)//读txt格式的lua ref把地址也传进去了 读取全部字节
-    {
+    {/*
         //string filename = Application.dataPath + "/Resources/Lua/" + strFile.Replace('.', '/') + ".txt";
         string filename = Application.dataPath + "/StreamingAssets/Lua/" + strFile.Replace('.', '/') + ".txt";
         return File.ReadAllBytes(filename);
+        */
+        LuaResourse thisLuaRes = AssetBundleManager.LoadResource<LuaResourse>(strFile, "myluares");
+        return System.Text.Encoding.Default.GetBytes(thisLuaRes.LuaString);
     }
 
     public void ShowBag()
@@ -32,6 +38,8 @@ public class LuaShowBag : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        //thisLuaRes = AssetBundleManager.LoadResource<LuaResourse>("ShowBag", "myluares");
+
         bagPanel =AssetBundleManager.LoadResource<GameObject>("BagPanel","bagpanel" );
 
         luaSvr = new LuaSvr();// 初始化LuaSvr LuaSvr是对LuaState的一个封装
