@@ -49,12 +49,6 @@ public class BagPanel : MonoBehaviour
 
     private void OnEnable()
     {
-        if (instance != null)
-        {
-            Destroy(this);
-        }
-        instance = this;
-
         myBag = AssetBundleManager.LoadResource<BagSO>("Bag", "bagpanel");
 
         luaSvr = new LuaSvr();// 初始化LuaSvr
